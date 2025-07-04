@@ -52,6 +52,7 @@ namespace Notifier
             this.DisableStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.recieverTabPage = new System.Windows.Forms.TabPage();
+            this.showNotificationButton = new System.Windows.Forms.Button();
             this.notifyWhenInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.notifyWhenOfflineCheckBox = new System.Windows.Forms.CheckBox();
             this.notifyWhenOverCheckBox = new System.Windows.Forms.CheckBox();
@@ -274,12 +275,12 @@ namespace Notifier
             this.exitToolStripMenuItem,
             this.DisableStripMenuItem});
             this.notificationAreaContextMenuStrip.Name = "notificationAreaContextMenuStrip";
-            this.notificationAreaContextMenuStrip.Size = new System.Drawing.Size(181, 70);
+            this.notificationAreaContextMenuStrip.Size = new System.Drawing.Size(113, 48);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.ToolTipText = "Lilo: Bla Bla";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
@@ -287,7 +288,7 @@ namespace Notifier
             // DisableStripMenuItem
             // 
             this.DisableStripMenuItem.Name = "DisableStripMenuItem";
-            this.DisableStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DisableStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.DisableStripMenuItem.Text = "Disable";
             this.DisableStripMenuItem.Click += new System.EventHandler(this.DisableStripMenuItem_Click);
             // 
@@ -306,6 +307,7 @@ namespace Notifier
             // 
             // recieverTabPage
             // 
+            this.recieverTabPage.Controls.Add(this.showNotificationButton);
             this.recieverTabPage.Controls.Add(this.notifyWhenInactiveCheckBox);
             this.recieverTabPage.Controls.Add(this.notifyWhenOfflineCheckBox);
             this.recieverTabPage.Controls.Add(this.notifyWhenOverCheckBox);
@@ -330,6 +332,17 @@ namespace Notifier
             this.recieverTabPage.TabIndex = 2;
             this.recieverTabPage.Text = "Reciever";
             this.recieverTabPage.UseVisualStyleBackColor = true;
+            // 
+            // showNotificationButton
+            // 
+            this.showNotificationButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.showNotificationButton.Location = new System.Drawing.Point(512, 148);
+            this.showNotificationButton.Name = "showNotificationButton";
+            this.showNotificationButton.Size = new System.Drawing.Size(107, 23);
+            this.showNotificationButton.TabIndex = 18;
+            this.showNotificationButton.Text = "Show Notification";
+            this.showNotificationButton.UseVisualStyleBackColor = true;
+            this.showNotificationButton.Click += new System.EventHandler(this.ShowNotificationButton_Click);
             // 
             // notifyWhenInactiveCheckBox
             // 
@@ -386,6 +399,8 @@ namespace Notifier
             // notifyWhenActiveCheckBox
             // 
             this.notifyWhenActiveCheckBox.AutoSize = true;
+            this.notifyWhenActiveCheckBox.Checked = true;
+            this.notifyWhenActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.notifyWhenActiveCheckBox.Location = new System.Drawing.Point(332, 59);
             this.notifyWhenActiveCheckBox.Name = "notifyWhenActiveCheckBox";
             this.notifyWhenActiveCheckBox.Size = new System.Drawing.Size(115, 17);
@@ -1049,6 +1064,7 @@ namespace Notifier
         private System.Windows.Forms.Button clearPopupFormButton;
         private System.Windows.Forms.TextBox popupSentSinceTimeTextBox;
         private System.Windows.Forms.TextBox popupRecievedSinceTimeTextBox;
+        private System.Windows.Forms.Button showNotificationButton;
     }
 }
 

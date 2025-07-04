@@ -14,6 +14,8 @@ using System.Configuration;
 using WebSocketSharp; // https://github.com/sta/websocket-sharp
 using System.Windows.Media;
 using System.Collections.Generic;
+using System.Drawing;
+using Color = System.Drawing.Color;
 
 namespace Notifier
 {
@@ -104,6 +106,8 @@ namespace Notifier
 
             mouse = new MouseInput();
             mouse.MouseMoved += MouseMoved_event;
+
+            ShowNotification(to_whom_to_send); // Unknown
 
             InitializeWebSocketAsync(); // lilo3: should I place it upper?
         }
@@ -252,6 +256,8 @@ namespace Notifier
                             {
                                 _traceeStatusTextBox.BackColor = Control.DefaultBackColor;
                                 _traceeStatusTextBox.Text = "Offline";
+                                notifyWhenActiveCheckBox.Checked = true;
+                                ShowNotification(to_whom_to_send);
                             }
                             //else if (_notifyWhenOnlineCheckBox.Checked && message.is_tracee_connected?.Value ?? false)
                             //{
@@ -269,6 +275,7 @@ namespace Notifier
                             _recievedFromTextBox.Text = message.tracee_login + " (tracee_connected)";
                             _traceeStatusTextBox.BackColor = System.Drawing.Color.LightGreen;
                             _traceeStatusTextBox.Text = "Online";
+                            ShowNotification(message.tracee_login.Value);
                             notifyWhenOfflineCheckBox.Enabled = true;
                             //if (_notifyWhenOnlineCheckBox.Checked)
                             //{
@@ -293,10 +300,11 @@ namespace Notifier
                             {
                                 player.Open(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"sounds/Offline.mp3"));
                                 player.Play();
+                                ShowNotification(to_whom_to_send);
                             }
                             notifyWhenOfflineCheckBox.Checked = false;
                             notifyWhenOfflineCheckBox.Enabled = false;
-                            notifyWhenActiveCheckBox.Checked = false; // lilo
+                            notifyWhenActiveCheckBox.Checked = true; // lilo
                             notifyWhenActiveCheckBox.Enabled = true;
                             notifyWhenInactiveCheckBox.Checked = false;
                         }));
@@ -359,6 +367,7 @@ namespace Notifier
                     _traceeStatusTextBox.BackColor = Control.DefaultBackColor;
                     _traceeStatusTextBox.Text = "Unknown";
                     notifyWhenActiveCheckBox.Enabled = true;
+                    notifyWhenActiveCheckBox.Checked = true;
                     notifyWhenInactiveCheckBox.Checked = false;
                 }, null);
 
@@ -397,7 +406,11 @@ namespace Notifier
         void MouseMoved_event(object sender, EventArgs e)
         {
             LastMouse_Time = DateTime.Now;
-            LastMouseTextBox.Text = FormatDateTime(LastMouse_Time);
+            bool debug = false;
+            if (debug)
+            {
+                LastMouseTextBox.Text = FormatDateTime(LastMouse_Time);
+            }
         }
 
         private static int LastIndexOfRegEx(string input, string pattern)
@@ -630,6 +643,8 @@ namespace Notifier
                         //player.Position = TimeSpan.Zero;
                         player.Play();
                         notifyWhenActiveCheckBox.Checked = false;
+                        notifyWhenOfflineCheckBox.Checked = true;
+                        // ShowNotification(to_whom_to_send);
                     }
                     //if (_notifyWhenOnlineCheckBox.Enabled != (span_time > notify_timeout || _traceeStatusTextBox.Text != "Online"))
                     //{
@@ -886,6 +901,73 @@ namespace Notifier
                     popupRecievedSinceTimeTextBox.Text = "";
                 }
             }));
+        }
+
+        private static NotificationForm notificationForm;
+
+        public enum NotificationStatus
+        {
+            Unknown,
+            Online,
+            Offline
+        }
+
+        public void ShowNotification(string tracee_name)
+        {
+            if (notificationForm == null || notificationForm.IsDisposed)
+            {
+                notificationForm = new NotificationForm();
+            }
+
+            NotificationStatus status;
+
+            if (!Enum.TryParse(traceeStatusTextBox.Text, ignoreCase: false, out status))
+            {
+                throw new Exception("Unknown Status");
+            }
+
+            switch (status)
+            {
+                case NotificationStatus.Unknown:
+                    notificationForm.BackColor = Color.LightGray;
+                    notificationForm.ForeColor = Color.DimGray;
+                    break;
+                case NotificationStatus.Online:
+                    notificationForm.BackColor = Color.LightGreen;
+                    notificationForm.ForeColor = Color.DarkGreen;
+                    break;
+                case NotificationStatus.Offline:
+                    notificationForm.BackColor = Color.LightCoral;
+                    notificationForm.ForeColor = Color.DarkRed;
+                    break;
+                default:
+                    throw new Exception();
+            }
+
+            int lastColonIndex = tracee_name.LastIndexOf(':');
+            string tracee_name_without_pw = lastColonIndex >= 0 ? tracee_name.Substring(0, lastColonIndex) : tracee_name;
+            notificationForm.SetMessage(tracee_name_without_pw + "\nStatus: " + traceeStatusTextBox.Text);
+
+            Rectangle workingArea = Screen.GetWorkingArea(notificationForm);
+            notificationForm.Location = new Point(
+                workingArea.Right - notificationForm.Width - 10,
+                workingArea.Bottom - notificationForm.Height - 10
+            );
+
+            if (!notificationForm.Visible)
+            {
+                notificationForm.Show();
+            }
+            else
+            {
+                notificationForm.BringToFront();
+                notificationForm.Refresh();
+            }
+        }
+
+        private void ShowNotificationButton_Click(object sender, EventArgs e)
+        {
+            ShowNotification(to_whom_to_send);
         }
     }
 }
