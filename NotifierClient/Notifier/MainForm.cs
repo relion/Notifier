@@ -276,6 +276,11 @@ namespace Notifier
                             _recievedFromTextBox.Text = message.tracee_login + " (tracee_connected)";
                             _traceeStatusTextBox.BackColor = System.Drawing.Color.LightGreen;
                             _traceeStatusTextBox.Text = "Online";
+
+                            player.Open(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"sounds/Active.mp3"));
+                            //player.Position = TimeSpan.Zero;
+                            player.Play();
+
                             ShowNotification(message.tracee_login.Value);
                             notifyWhenOfflineCheckBox.Enabled = true;
                             //if (_notifyWhenOnlineCheckBox.Checked)
@@ -297,7 +302,7 @@ namespace Notifier
                         this.Invoke(new Action(() => {
                             _traceeStatusTextBox.BackColor = Control.DefaultBackColor;
                             _traceeStatusTextBox.Text = "Offline";
-                            if (notifyWhenOfflineCheckBox.Checked)
+                            if (true || notifyWhenOfflineCheckBox.Checked)
                             {
                                 player.Open(new Uri(AppDomain.CurrentDomain.BaseDirectory + @"sounds/Offline.mp3"));
                                 player.Play();
@@ -645,7 +650,7 @@ namespace Notifier
                         player.Play();
                         notifyWhenActiveCheckBox.Checked = false;
                         notifyWhenOfflineCheckBox.Checked = true;
-                        // ShowNotification(to_whom_to_send);
+                        ShowNotification(to_whom_to_send); // lilo 20250822
                     }
                     //if (_notifyWhenOnlineCheckBox.Enabled != (span_time > notify_timeout || _traceeStatusTextBox.Text != "Online"))
                     //{
