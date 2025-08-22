@@ -957,7 +957,7 @@ namespace Notifier
                 case NotificationStatus.Unknown:
                     notificationForm.BackColor = Color.LightGray;
                     notificationForm.ForeColor = Color.DimGray;
-                    icon_str = "notificationArea.Icon"; // Grey
+                    icon_str = "Notifier-Grey.Icon";
                     break;
                 case NotificationStatus.Online:
                     notificationForm.BackColor = Color.LightGreen;
@@ -967,7 +967,7 @@ namespace Notifier
                 case NotificationStatus.Offline:
                     notificationForm.BackColor = Color.LightCoral;
                     notificationForm.ForeColor = Color.DarkRed;
-                    icon_str = "notificationArea.Icon"; // "notificationArea-Red.Icon"
+                    icon_str = "Notifier-Grey.Icon"; // "notificationArea-Red.Icon"
                     break;
                 default:
                     throw new Exception("invlaid status = " + status);

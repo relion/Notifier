@@ -265,7 +265,7 @@ namespace Notifier
             // notificationArea
             // 
             this.notificationArea.ContextMenuStrip = this.notificationAreaContextMenuStrip;
-            this.notificationArea.Icon = ((System.Drawing.Icon)(resources.GetObject("notificationArea.Icon")));
+            this.notificationArea.Icon = ((System.Drawing.Icon)(resources.GetObject("Notifier-Grey.Icon")));
             this.notificationArea.Text = "Notify Desktop";
             this.notificationArea.Visible = true;
             this.notificationArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NotificationAreaIcon_MouseClick);
@@ -972,7 +972,7 @@ namespace Notifier
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 413);
             this.Controls.Add(this.tabControl1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("Notifier-Grey.Icon"))); // "$this.Icon"
             this.Name = "MainForm";
             this.Text = "Notifier";
             this.TopMost = true;
