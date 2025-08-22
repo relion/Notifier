@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="notificationArea.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="notificationAreaContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>178, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="notificationArea.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
+  <data name="notificationAreaContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>178, 17</value>
+  </data>
   <data name="notificationArea.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIACOBwEAlgAAAICAAAABACAAKAgBACQIAQBgYAAAAQAgAKiUAABMEAIASEgAAAEA
@@ -3951,9 +3951,10 @@
         wAMAAMADAADgBwAA+D8AAPgfAAD4PwAA+B8AAA==
 </value>
   </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
     <value>60</value>
-  </metadata>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIACOBwEAlgAAAICAAAABACAAKAgBACQIAQBgYAAAAQAgAKiUAABMEAIASEgAAAEA
@@ -7780,5 +7781,12 @@
         KysqBAAAAAAAAAAAAAAAAAAAAAAAAAAA4ccAAMCDAADAAwAAwAMAAOADAADAAwAAgAMAAMADAADgAwAA
         wAMAAMADAADgBwAA+D8AAPgfAAD4PwAA+B8AAA==
 </value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="notificationArea-Green.Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Proycontec-Robots-Robot-documents-Green.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="notificationArea-Red.Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Proycontec-Robots-Robot-documents-Red.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

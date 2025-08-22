@@ -113,6 +113,7 @@ namespace Notifier
             this.SendDataCheckBox = new System.Windows.Forms.CheckBox();
             this.AlwaysOnTopCheckBox = new System.Windows.Forms.CheckBox();
             this.HideOnStartCheckBox = new System.Windows.Forms.CheckBox();
+            this.ShowNotificationPopupCheckBox = new System.Windows.Forms.CheckBox();
             this.notificationAreaContextMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.recieverTabPage.SuspendLayout();
@@ -822,6 +823,7 @@ namespace Notifier
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.ShowNotificationPopupCheckBox);
             this.panel2.Controls.Add(this.label14);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.label12);
@@ -843,7 +845,7 @@ namespace Notifier
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(410, 42);
+            this.label14.Location = new System.Drawing.Point(499, 42);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(74, 13);
             this.label14.TabIndex = 12;
@@ -852,7 +854,7 @@ namespace Notifier
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(398, 18);
+            this.label13.Location = new System.Drawing.Point(487, 18);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(74, 13);
             this.label13.TabIndex = 11;
@@ -878,7 +880,7 @@ namespace Notifier
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(130, 18);
+            this.label11.Location = new System.Drawing.Point(219, 18);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(84, 13);
             this.label11.TabIndex = 8;
@@ -886,7 +888,7 @@ namespace Notifier
             // 
             // MyLoginNameTextBox
             // 
-            this.MyLoginNameTextBox.Location = new System.Drawing.Point(220, 15);
+            this.MyLoginNameTextBox.Location = new System.Drawing.Point(309, 15);
             this.MyLoginNameTextBox.Name = "MyLoginNameTextBox";
             this.MyLoginNameTextBox.Size = new System.Drawing.Size(172, 20);
             this.MyLoginNameTextBox.TabIndex = 7;
@@ -895,7 +897,7 @@ namespace Notifier
             // SendAlsoAppsDataCheckBox
             // 
             this.SendAlsoAppsDataCheckBox.AutoSize = true;
-            this.SendAlsoAppsDataCheckBox.Location = new System.Drawing.Point(133, 63);
+            this.SendAlsoAppsDataCheckBox.Location = new System.Drawing.Point(222, 63);
             this.SendAlsoAppsDataCheckBox.Name = "SendAlsoAppsDataCheckBox";
             this.SendAlsoAppsDataCheckBox.Size = new System.Drawing.Size(126, 17);
             this.SendAlsoAppsDataCheckBox.TabIndex = 5;
@@ -905,7 +907,7 @@ namespace Notifier
             // 
             // ToWhomToSendTextBox
             // 
-            this.ToWhomToSendTextBox.Location = new System.Drawing.Point(227, 39);
+            this.ToWhomToSendTextBox.Location = new System.Drawing.Point(316, 39);
             this.ToWhomToSendTextBox.Name = "ToWhomToSendTextBox";
             this.ToWhomToSendTextBox.Size = new System.Drawing.Size(177, 20);
             this.ToWhomToSendTextBox.TabIndex = 4;
@@ -914,7 +916,7 @@ namespace Notifier
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(204, 41);
+            this.label10.Location = new System.Drawing.Point(293, 41);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(19, 13);
             this.label10.TabIndex = 3;
@@ -923,7 +925,7 @@ namespace Notifier
             // SendDataCheckBox
             // 
             this.SendDataCheckBox.AutoSize = true;
-            this.SendDataCheckBox.Location = new System.Drawing.Point(133, 40);
+            this.SendDataCheckBox.Location = new System.Drawing.Point(222, 40);
             this.SendDataCheckBox.Name = "SendDataCheckBox";
             this.SendDataCheckBox.Size = new System.Drawing.Size(77, 17);
             this.SendDataCheckBox.TabIndex = 2;
@@ -952,6 +954,17 @@ namespace Notifier
             this.HideOnStartCheckBox.Text = "Hide on start";
             this.HideOnStartCheckBox.UseVisualStyleBackColor = true;
             this.HideOnStartCheckBox.CheckedChanged += new System.EventHandler(this.HideOnStartCheckBox_CheckedChanged);
+            // 
+            // ShowNotificationPopupCheckBox
+            // 
+            this.ShowNotificationPopupCheckBox.AutoSize = true;
+            this.ShowNotificationPopupCheckBox.Location = new System.Drawing.Point(18, 63);
+            this.ShowNotificationPopupCheckBox.Name = "ShowNotificationPopupCheckBox";
+            this.ShowNotificationPopupCheckBox.Size = new System.Drawing.Size(143, 17);
+            this.ShowNotificationPopupCheckBox.TabIndex = 13;
+            this.ShowNotificationPopupCheckBox.Text = "Show Notification Popup";
+            this.ShowNotificationPopupCheckBox.UseVisualStyleBackColor = true;
+            this.ShowNotificationPopupCheckBox.CheckedChanged += new System.EventHandler(this.ShowNotificationPopupCheckBox_CheckedChanged);
             // 
             // MainForm
             // 
@@ -1065,6 +1078,7 @@ namespace Notifier
         private System.Windows.Forms.TextBox popupSentSinceTimeTextBox;
         private System.Windows.Forms.TextBox popupRecievedSinceTimeTextBox;
         private System.Windows.Forms.Button showNotificationButton;
+        private System.Windows.Forms.CheckBox ShowNotificationPopupCheckBox;
     }
 }
 

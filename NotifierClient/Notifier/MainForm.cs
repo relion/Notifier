@@ -78,6 +78,7 @@ namespace Notifier
             HideOnStartCheckBox.Checked = Properties.Settings.Default.HideOnStart;
             AlwaysOnTopCheckBox.Checked = Properties.Settings.Default.AlwaysOnTop;
             SendDataCheckBox.Checked = Properties.Settings.Default.SendData;
+            ShowNotificationPopupCheckBox.Checked = Properties.Settings.Default.ShowNotificationPopup;
             SendAlsoAppsDataCheckBox.Checked = Properties.Settings.Default.SendAlsoAppsData;
             MyLoginNameTextBox.Text = my_login_name = Properties.Settings.Default.MyLoginName;
             ToWhomToSendTextBox.Text = to_whom_to_send = Properties.Settings.Default.ToWhomToSend;
@@ -87,7 +88,7 @@ namespace Notifier
             //goto SKEEP_INPUT;
 
             Check_Input_Process_Timer = new DispatcherTimer();
-            Check_Input_Process_Timer.Interval = new TimeSpan(0, 0, 0, 0, 200); // 200 ms
+            Check_Input_Process_Timer.Interval = new TimeSpan(0, 0, 0, 1, 0); // 1 s
             Check_Input_Process_Timer.Tick += Handle_App_Process_Tick;
             Check_Input_Process_Timer.Start();
 
@@ -740,6 +741,23 @@ namespace Notifier
             Properties.Settings.Default.Save();
         }
 
+        private void ShowNotificationPopupCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ShowNotificationPopup = ShowNotificationPopupCheckBox.Checked;
+            Properties.Settings.Default.Save();
+            if (ShowNotificationPopupCheckBox.Checked)
+            {
+                if (to_whom_to_send != null)
+                {
+                    ShowNotification(to_whom_to_send);
+                }
+            }
+            else
+            {
+                notificationForm.Hide();
+            }
+        }
+
         private void MyLoginNameTextBox_TextChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.MyLoginName = MyLoginNameTextBox.Text;
@@ -926,22 +944,37 @@ namespace Notifier
                 throw new Exception("Unknown Status");
             }
 
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            string icon_str = null;
+
             switch (status)
             {
                 case NotificationStatus.Unknown:
                     notificationForm.BackColor = Color.LightGray;
                     notificationForm.ForeColor = Color.DimGray;
+                    icon_str = "notificationArea.Icon"; // Grey
                     break;
                 case NotificationStatus.Online:
                     notificationForm.BackColor = Color.LightGreen;
                     notificationForm.ForeColor = Color.DarkGreen;
+                    icon_str = "notificationArea-Green.Icon";
                     break;
                 case NotificationStatus.Offline:
                     notificationForm.BackColor = Color.LightCoral;
                     notificationForm.ForeColor = Color.DarkRed;
+                    icon_str = "notificationArea.Icon"; // "notificationArea-Red.Icon"
                     break;
                 default:
-                    throw new Exception();
+                    throw new Exception("invlaid status = " + status);
+            }
+
+            var _tmp = (Icon)resources.GetObject(icon_str);
+            if (_tmp == null) throw new Exception("icon is null");
+            this.notificationArea.Icon = _tmp;
+
+            if (!Properties.Settings.Default.ShowNotificationPopup)
+            {
+                return;
             }
 
             int lastColonIndex = tracee_name.LastIndexOf(':');

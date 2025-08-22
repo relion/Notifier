@@ -94,5 +94,17 @@ namespace Notifier.Properties {
                 this["ToWhomToSend"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowNotificationPopup {
+            get {
+                return ((bool)(this["ShowNotificationPopup"]));
+            }
+            set {
+                this["ShowNotificationPopup"] = value;
+            }
+        }
     }
 }
